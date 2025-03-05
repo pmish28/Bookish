@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using Bookish.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bookish.Controllers
@@ -11,7 +13,11 @@ namespace Bookish.Controllers
         }
         public IActionResult Index()
         {
-            return View("Index");
+            return View();
+        }
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
