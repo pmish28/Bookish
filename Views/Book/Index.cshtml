@@ -1,0 +1,61 @@
+@model IEnumerable<BookViewModel>
+
+@{
+    ViewData["Title"] = "Book";
+}
+<div class="text-center">
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublicationYear)              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCopies)              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvailableCopies)              
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)              
+            </th>
+        </tr> @* @foreach(var item in Model)
+        { *@
+        <tr>            
+            <td>
+                @* @Html.DisplayFor(modelItem => item.Name) *@
+                Harry Potter 1
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.Author) *@
+                J.K.Rowling
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.PublicationYear) *@
+                1997
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.TotalCopies) *@
+                20
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.AvailableCopies) *@
+                15
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.Genre) *@
+                Fiction
+            </td>
+        </tr>
+        <!-- } -->
+      
+    </thead>
+</table>
+</div>
