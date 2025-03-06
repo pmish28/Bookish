@@ -26,36 +26,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.Genre)              
             </th>
-        </tr> @* @foreach(var item in Model)
-        { *@
+        </tr> @foreach(var item in Model)
+        {
         <tr>            
             <td>
-                @* @Html.DisplayFor(modelItem => item.Name) *@
-                Harry Potter 1
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.Author) *@
-                J.K.Rowling
+                @Html.DisplayFor(modelItem => item.Author)
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.PublicationYear) *@
-                1997
+                @Html.DisplayFor(modelItem => item.PublicationYear)
+                
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.TotalCopies) *@
-                20
+                @Html.DisplayFor(modelItem => item.TotalCopies)
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.AvailableCopies) *@
-                15
+                @Html.DisplayFor(modelItem => item.AvailableCopies)
+                
             </td>
             <td>
-                @* @Html.DisplayFor(modelItem => item.Genre) *@
-                Fiction
+                @Html.DisplayFor(modelItem => item.Genre)
             </td>
         </tr>
-        <!-- } -->
-      
+        }
     </thead>
 </table>
 </div>

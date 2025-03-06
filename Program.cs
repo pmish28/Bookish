@@ -1,7 +1,13 @@
+using Bookish;
+using Microsoft.EntityFrameworkCore.Internal;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BookishContext>();
+DbInitializer.Initialize();
 
 var app = builder.Build();
 
