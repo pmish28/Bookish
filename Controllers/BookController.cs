@@ -1,19 +1,25 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Bookish.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bookish.Controllers
 {
     public class BookController : Controller
     {
 
-        public BookController()
+
+        private readonly BookishContext _context;
+        public BookController(BookishContext context)
         {
+            _context = context;
 
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<BookViewModel> books = (await _context.Books.ToListAsync()).Select(book=>new BookViewModel(book)).ToList();
+            return View(books);
         }
         public IActionResult Error()
         {
