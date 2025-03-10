@@ -17,12 +17,10 @@ namespace Bookish.Models
         [Required]
         public int PublicationYear { get; set; }
 
-        public int TotalCopies { get; set; }
-
-        public int AvailableCopies { get; set; }
-
         [Required]
         public string Genre { get; set; }
+
+        public ICollection<BookCopy> BookCopies { get; set; }
 
         public Book(BookViewModel bookViewModel)
         {
@@ -30,8 +28,6 @@ namespace Bookish.Models
             Name = bookViewModel.Name;
             Author = bookViewModel.Author;
             PublicationYear = bookViewModel.PublicationYear;
-            TotalCopies = bookViewModel.TotalCopies;
-            AvailableCopies = bookViewModel.AvailableCopies;
             Genre = bookViewModel.Genre;
         }
         public Book() { }
