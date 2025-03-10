@@ -36,7 +36,10 @@ namespace Bookish.Controllers
 
             var book = await _context.Books
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (book == null)
+
+            var bookDetails = await _context.Books.Include(book=>book.BookCopies).ToListAsync();            
+            
+            
             {
                 return NotFound();
             }
