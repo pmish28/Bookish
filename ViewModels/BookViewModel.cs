@@ -9,6 +9,10 @@ namespace Bookish.Models
         public int PublicationYear { get; set; }
         public string Genre { get; set; }
 
+        public int TotalCopies { get; set; }
+
+        public int AvailableCopies { get; set; }
+
         public BookViewModel(Book book)
         {
             Id = book.Id;

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Bookish.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow.CopyAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookish.Controllers
@@ -37,14 +38,12 @@ namespace Bookish.Controllers
             var book = await _context.Books
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            var bookDetails = await _context.Books.Include(book=>book.BookCopies).ToListAsync();            
-            
-            
+            BookViewModel bookViewModal = new(book)
             {
-                return NotFound();
-            }
-
-            return View(new BookViewModel(book));
+                AvailableCopies = _context.BookCopy.Where(copy => copy.Book == book && copy.IsCheckedOut == false).Count(),
+                TotalCopies = _context.BookCopy.Where(copy => copy.Book == book).Count()
+            };
+            return View(bookViewModal);
         }
 
         // POST: Books/Create
@@ -156,6 +155,29 @@ namespace Bookish.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+       // GET: Books/Create
+        public IActionResult AddBookCopy()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBookCopy(int Id, AddCopyViewModel addCopyViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                for(int i=1;i<addCopyViewModel.NumberOfCopies;i++)
+                {
+                    BookCopy bookCopy = new(Id,false);
+                    await _context.BookCopy.AddAsync(bookCopy);
+                }
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Details));
+            }
+            return View(addCopyViewModel);
         }
     }
 }
