@@ -17,6 +17,11 @@ namespace Bookish.Models
             PublicationYear = book.PublicationYear;
             Genre = book.Genre;
         }
+
+        public BookViewModel()
+        {
+            
+        }
         
     }
 }
